@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Đơn hàng của tôi";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@{
+    Response.Redirect(Url.Action("MyOrder", "Order"));
+}

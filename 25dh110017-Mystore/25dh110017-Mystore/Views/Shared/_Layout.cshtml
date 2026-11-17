@@ -1,96 +1,355 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@ViewBag.Title - ARIS SHOP</title>
+
+    <!-- CSS Bootstrap -->
     @Styles.Render("~/Content/css")
-    <!-- Nhúng file CSS giao diện Cyberpunk cao cấp -->
-    <link href="~/Content/ARIS-Theme.css" rel="stylesheet" />
+
+    <!-- CSS ARIS SHOP -->
+    <link href="@Url.Content("~/Content/ARIS-Theme.css")"
+          rel="stylesheet" />
+
+    <!-- Modernizr -->
     @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #0b0f19;
+            color: #e8faff;
+        }
+
+        /* NAVBAR */
+        .aris-navbar {
+            background-color: #0b0f19;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.25);
+            box-shadow: 0 3px 15px rgba(0, 242, 254, 0.08);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+            .navbar-brand img {
+                height: 42px;
+                width: auto;
+                object-fit: contain;
+                margin-right: 8px;
+                mix-blend-mode: screen;
+            }
+
+        .cyber-logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .shop-logo {
+            color: #00f2fe;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .aris-navbar .nav-link {
+            color: #d8e5ef !important;
+            transition: 0.3s;
+        }
+
+            .aris-navbar .nav-link:hover {
+                color: #00f2fe !important;
+                text-shadow: 0 0 8px #00f2fe;
+            }
+
+        /* MAIN CONTENT */
+        .body-content {
+            flex: 1;
+            width: 100%;
+            padding-top: 25px;
+            padding-bottom: 35px;
+        }
+
+        /* CYBER BUTTON */
+        .btn-cyber {
+            border: 1px solid #00f2fe;
+            color: #00f2fe;
+            background: transparent;
+            transition: 0.3s;
+        }
+
+            .btn-cyber:hover {
+                color: #0b0f19;
+                background: #00f2fe;
+                box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+            }
+
+        /* FOOTER */
+        .footer-cyber {
+            margin-top: auto;
+            padding: 20px 0;
+            background-color: #080c14;
+            border-top: 1px solid rgba(0, 242, 254, 0.25);
+        }
+
+            .footer-cyber p {
+                color: #8999a8;
+                margin: 0;
+            }
+
+        /* RESPONSIVE */
+        @@media (max-width: 576px) {
+            .navbar-brand img {
+                height: 34px;
+            }
+
+            .body-content {
+                padding-top: 15px;
+            }
+
+            .navbar-nav {
+                padding-top: 8px;
+            }
+        }
+    </style>
 </head>
+
 <body class="d-flex flex-column min-vh-100 bg-dark text-light">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark py-2 border-bottom border-secondary" style="border-color: rgba(0, 242, 254, 0.2) !important;">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-sm navbar-dark aris-navbar py-2">
+
         <div class="container">
-            <!-- LOGO THƯƠNG HIỆU ARIS CÔNG NGHỆ -->
-            <a class="navbar-brand d-flex align-items-center me-4" href="@Url.Action("Index", "Home")">
-                <!-- Thẻ ảnh trỏ thẳng tới thư mục Images kèm hiệu ứng lọc nền xám -->
+
+            <!-- LOGO ARIS SHOP -->
+            <a class="navbar-brand d-flex align-items-center me-4"
+               href="@Url.Action("Index", "Home")">
+
                 <img src="@Url.Content("~/Images/logo.png")"
-                     style="height: 42px; width: auto; object-fit: contain; mix-blend-mode: screen; background: transparent;"
+                     alt="ARIS SHOP"
                      onerror="this.style.display='none'; document.getElementById('cyber-text-logo').style.display='inline-block';" />
 
-                <!-- Logo chữ Cyberpunk dự phòng -->
-                <span id="cyber-text-logo" class="font-weight-bold me-2" style="display: none; font-size: 24px; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px;">⚡ARIS</span>
+                <span id="cyber-text-logo"
+                      class="cyber-logo"
+                      style="display:none;">
+                    ⚡ARIS
+                </span>
 
-                <span class="text-info font-weight-bold" style="font-size: 20px; letter-spacing: 1px;">SHOP</span>
+                <span class="shop-logo">SHOP</span>
+
             </a>
 
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <!-- MOBILE MENU -->
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
                 <span class="navbar-toggler-icon"></span>
+
             </button>
 
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">@Html.ActionLink("Trang chủ", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Giới thiệu", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Liên hệ", "Contact", "Home", null, new { @class = "nav-link" })</li>
+            <!-- MENU CONTENT -->
+            <div class="collapse navbar-collapse"
+                 id="navbarSupportedContent">
 
-                    <!-- NÚT QUẢN TRỊ ADMIN -->
+                <ul class="navbar-nav flex-grow-1">
+
                     <li class="nav-item">
-                        @Html.ActionLink("Quản trị", "Index", "Products", new { area = "Admin" }, new { @class = "nav-link text-warning font-weight-bold" })
+                        @Html.ActionLink(
+                                 "Trang chủ",
+                                 "Index",
+                                 "Home",
+                                 null,
+                                 new { @class = "nav-link" }
+                             )
                     </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink(
+                                 "Giới thiệu",
+                                 "About",
+                                 "Home",
+                                 null,
+                                 new { @class = "nav-link" }
+                             )
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink(
+                                 "Liên hệ",
+                                 "Contact",
+                                 "Home",
+                                 null,
+                                 new { @class = "nav-link" }
+                             )
+                    </li>
+
+                    <!-- ADMIN -->
+                    <li class="nav-item">
+                        @Html.ActionLink(
+                                 "Quản trị",
+                                 "Index",
+                                 "Products",
+                                 new { area = "Admin" },
+                                 new
+                                 {
+                                     @class = "nav-link text-warning font-weight-bold"
+                                 }
+                             )
+                    </li>
+
                 </ul>
 
-                <div class="d-flex align-items-center gap-3">
-                    <!-- TÍCH HỢP GIỎ HÀNG NHỎ TRÊN HEADER -->
-                    <div>
+                <!-- RIGHT MENU -->
+                <div class="d-flex align-items-center flex-wrap">
+
+                    <!-- CART -->
+                    <div class="me-3">
                         @Html.Action("CartSummary", "Cart")
                     </div>
 
-                    <!-- NÚT XỬ LÝ ĐĂNG KÝ / ĐĂNG NHẬP / ĐĂNG XUẤT -->
+                    <!-- ACCOUNT -->
                     <ul class="navbar-nav align-items-center mb-0">
+
                         @if (Session["Username"] != null)
                         {
                             <li class="nav-item me-2">
-                                <span class="text-white">Xin chào, <strong class="text-warning">@Session["Username"]</strong></span>
+                                <span class="text-white">
+                                    Xin chào,
+                                    <strong class="text-warning">
+                                        @Session["Username"]
+                                    </strong>
+                                </span>
                             </li>
+
+                            <!-- MY ORDER -->
                             <li class="nav-item me-2">
-                                @Html.ActionLink("Lịch sử", "History", "Order", null, new { @class = "btn btn-outline-info btn-sm" })
+                                @Html.ActionLink(
+                                         "Đơn hàng của tôi",
+                                         "MyOrder",
+                                         "Order",
+                                         null,
+                                         new
+                                         {
+                                             @class = "btn btn-outline-info btn-sm"
+                                         }
+                                     )
                             </li>
+
+                            <!-- LOGOUT -->
                             <li class="nav-item">
-                                @Html.ActionLink("Đăng xuất", "Logout", "Account", null, new { @class = "btn btn-outline-danger btn-sm" })
+                                @Html.ActionLink(
+                                         "Đăng xuất",
+                                         "Logout",
+                                         "Account",
+                                         null,
+                                         new
+                                         {
+                                             @class = "btn btn-outline-danger btn-sm"
+                                         }
+                                     )
                             </li>
                         }
                         else
                         {
+                            <!-- REGISTER -->
                             <li class="nav-item me-2">
-                                @Html.ActionLink("Đăng ký", "Register", "Account", null, new { @class = "btn btn-outline-warning btn-sm" })
+                                @Html.ActionLink(
+                                         "Đăng ký",
+                                         "Register",
+                                         "Account",
+                                         null,
+                                         new
+                                         {
+                                             @class = "btn btn-outline-warning btn-sm"
+                                         }
+                                     )
                             </li>
+
+                            <!-- LOGIN -->
                             <li class="nav-item">
-                                @Html.ActionLink("Đăng nhập", "Login", "Account", null, new { @class = "btn btn-outline-light btn-sm" })
+                                @Html.ActionLink(
+                                         "Đăng nhập",
+                                         "Login",
+                                         "Account",
+                                         null,
+                                         new
+                                         {
+                                             @class = "btn btn-outline-light btn-sm"
+                                         }
+                                     )
                             </li>
                         }
+
                     </ul>
+
                 </div>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- PHẦN NỘI DUNG CHÍNH TỰ ĐỘNG GIÃN NỞ -->
-    <div class="container body-content mt-3 flex-grow-1">
-        @RenderBody()
-    </div>
 
-    <!-- CHÂN TRANG ĐƯỢC CỐ ĐỊNH XUỐNG ĐÁY (STICKY FOOTER) -->
-    <footer class="footer-cyber text-center py-4 mt-auto border-top border-secondary" style="border-color: rgba(0, 242, 254, 0.2) !important;">
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="container body-content">
+
+        @RenderBody()
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer-cyber text-center">
+
         <div class="container">
-            <p class="text-muted mb-0">&copy; @DateTime.Now.Year - ARIS SHOP E-Commerce Application</p>
+
+            <p>
+                &copy; @DateTime.Now.Year
+                - ARIS SHOP E-Commerce Application
+            </p>
+
+            <small class="text-muted">
+                Powered by ARIS Technology
+            </small>
+
         </div>
+
     </footer>
 
+
+    <!-- ================= JAVASCRIPT ================= -->
+
     @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
